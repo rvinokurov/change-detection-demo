@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+.onpush-node {
+  border: 1px solid black;
+  display: block;
+  margin: 20px 20px 5px 20px;
+  padding: 20px 20px 20px 20px;
+}
+
+.onpush-node div {
+  padding: 10px;
+}
+
+button {
+  margin: 5px;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #b9b9b9;
+}
+
+.green {
+  background-color: #9ce388;
+}
+
+.yellow {
+  background-color: #eaeaa0;
+}
+
+
+.blue {
+  background-color: #a1a1de;
+}
+
+.pink {
+  background-color: #fdb7c4;
+}
+
+.deepskyblue {
+  background-color: deepskyblue;
+}
+
+.gray {
+  background-color: #ffd1d1;
+}
