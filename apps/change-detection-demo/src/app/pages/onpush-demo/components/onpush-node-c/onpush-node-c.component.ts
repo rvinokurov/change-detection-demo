@@ -6,8 +6,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AbsctractComponentNode } from '../absctract-component-node';
 import { OnpushNodeEComponent } from '../onpush-node-e/onpush-node-e.component';
+import { AbsctractComponentNode } from '../../../../absctract-component-node';
 
 @Component({
   selector: 'onpush-node-c',
@@ -21,7 +21,7 @@ import { OnpushNodeEComponent } from '../onpush-node-e/onpush-node-e.component';
 export class OnpushNodeCComponent extends AbsctractComponentNode {
   title = 'C';
 
-  secondCounter = 0;
+  counter = 0;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -35,34 +35,34 @@ export class OnpushNodeCComponent extends AbsctractComponentNode {
     console.log(`click ${this.title}`);
   }
 
-  runSecondCounter() {
+  runCounter() {
     setInterval(() => {
-      this.secondCounter++;
+      this.counter++;
     }, 1000);
   }
 
-  runSecondCounterWithMarkForCheck() {
+  runCounterWithMarkForCheck() {
     setInterval(() => {
-      this.secondCounter++;
+      this.counter++;
       this.cdr.markForCheck();
     }, 1000);
   }
 
-  runSecondCounterWithMarkForCheckOutSideZone() {
+  runCounterWithMarkForCheckOutSideZone() {
     this.ngZone.runOutsideAngular(() => {
       setInterval(() => {
-        this.secondCounter++;
+        this.counter++;
         this.cdr.markForCheck();
       }, 1000);
-    })
+    });
   }
 
-  runSecondCounterWithDetectChangesOutSideZone() {
+  runCounterWithDetectChangesOutSideZone() {
     this.ngZone.runOutsideAngular(() => {
       setInterval(() => {
-        this.secondCounter++;
+        this.counter++;
         this.cdr.detectChanges();
       }, 1000);
-    })
+    });
   }
 }

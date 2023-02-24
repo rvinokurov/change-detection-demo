@@ -1,7 +1,12 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {OnpushNodeAComponent} from "../../components/onpush-node-a/onpush-node-a.component";
-import {OnpushNodeDComponent} from "../../components/onpush-node-d/onpush-node-d.component";
+import {OnpushNodeAComponent} from "./components/onpush-node-a/onpush-node-a.component";
+import {OnpushNodeDComponent} from "./components/onpush-node-d/onpush-node-d.component";
+import {AbsctractComponentNode} from "../../absctract-component-node";
 
 @Component({
   selector: 'change-detection-demo-onpush-demo',
@@ -12,4 +17,6 @@ import {OnpushNodeDComponent} from "../../components/onpush-node-d/onpush-node-d
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OnpushDemoComponent {}
+export class OnpushDemoComponent extends AbsctractComponentNode {
+  title = 'OnPush Demo';
+}

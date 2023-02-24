@@ -1,0 +1,20 @@
+<div class="onpush-node yellow">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+  <div>
+    <button (click)="click($event)">Click me!</button>
+  </div>
+  <div>
+    <h3>Run counter with setInterval(1000)</h3>
+    <button (click)="runCounter()">Simple!</button>
+    <button (click)="runCounterWithMarkForCheck()">With markForCheck!</button>
+    <button (click)="runCounterWithMarkForCheckOutSideZone()">
+      With markForCheck outside NgZone!
+    </button>
+    <button (click)="runCounterWithDetectChangesOutSideZone()">
+      With detectChanges outside NgZone!
+    </button>
+  </div>
+  <div>Second counter: {{ counter }}</div>
+  <onpush-node-e [counter]="counter" />
+</div>
