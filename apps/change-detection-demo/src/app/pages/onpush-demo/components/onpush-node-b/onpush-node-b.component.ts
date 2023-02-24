@@ -19,4 +19,6 @@ import {AbsctractComponentNode} from "../../../../absctract-component-node";
 })
 export class OnpushNodeBComponent extends AbsctractComponentNode {
   title = 'B';
+
+  nodeColor = '#a1a1de';
 }

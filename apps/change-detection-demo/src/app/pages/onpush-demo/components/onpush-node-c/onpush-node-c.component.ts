@@ -21,6 +21,8 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
 export class OnpushNodeCComponent extends AbsctractComponentNode {
   title = 'C';
 
+  nodeColor = '#eaeaa0';
+
   counter = 0;
 
   constructor(
@@ -32,7 +34,7 @@ export class OnpushNodeCComponent extends AbsctractComponentNode {
 
   click($event: MouseEvent) {
     $event.stopPropagation();
-    console.log(`click ${this.title}`);
+    this.log(`click ${this.title}`);
   }
 
   runCounter() {

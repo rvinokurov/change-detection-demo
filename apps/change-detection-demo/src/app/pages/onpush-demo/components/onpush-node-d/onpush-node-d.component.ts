@@ -20,8 +20,10 @@ import {OnpushNodeGComponent} from "../onpush-node-g/onpush-node-g.component";
 export class OnpushNodeDComponent extends AbsctractComponentNode {
   title = 'D';
 
+  nodeColor = '#ffd1d1';
+
   click($event: MouseEvent) {
     $event.stopPropagation();
-    console.log(`click ${this.title}`);
+    this.log(`click ${this.title}`);
   }
 }

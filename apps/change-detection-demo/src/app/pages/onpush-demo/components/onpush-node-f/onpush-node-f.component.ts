@@ -18,4 +18,6 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
 })
 export class OnpushNodeFComponent extends AbsctractComponentNode {
   title = 'F';
+
+  nodeColor = 'deepskyblue';
 }

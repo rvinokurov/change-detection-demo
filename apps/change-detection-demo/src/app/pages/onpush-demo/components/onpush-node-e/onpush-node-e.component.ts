@@ -20,5 +20,7 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
 export class OnpushNodeEComponent extends AbsctractComponentNode {
   title = 'E';
 
+  nodeColor = '#fdb7c4';
+
   @Input() counter = 0;
 }

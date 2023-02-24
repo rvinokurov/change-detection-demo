@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OnpushNodeCComponent } from '../onpush-node-c/onpush-node-c.component';
-import { AbsctractComponentNode } from '../../../../absctract-component-node';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation,} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {OnpushNodeCComponent} from '../onpush-node-c/onpush-node-c.component';
+import {AbsctractComponentNode} from '../../../../absctract-component-node';
 
 @Component({
   selector: 'onpush-node-g',
@@ -18,4 +14,21 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
 })
 export class OnpushNodeGComponent extends AbsctractComponentNode {
   title = 'F';
+
+  nodeColor = '#9ce388';
+
+  counter = 0;
+
+  constructor(private readonly cdr: ChangeDetectorRef) {
+    super();
+  }
+
+  override ngDoCheck() {
+    super.ngDoCheck();
+    this.counter++;
+
+    if(this.counter % 2 === 0) {
+      this.cdr.markForCheck();
+    }
+  }
 }

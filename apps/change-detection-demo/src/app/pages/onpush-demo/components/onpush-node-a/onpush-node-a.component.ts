@@ -17,5 +17,6 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnpushNodeAComponent extends AbsctractComponentNode {
+  nodeColor = '#9ce388';
   title = 'A';
 }
