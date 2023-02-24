@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<div class="menu">
+  <a class="menu-item" [routerLink]="['onpush-demo']" routerLinkActive="active"
+    >OnPush Demo</a
+  >
+  <a
+    class="menu-item"
+    [routerLink]="['onpush-bindings-demo']"
+    routerLinkActive="active"
+  >
+    OnPush Bindings Demo</a
+  >
+</div>
+<div class="page-container">
+  <router-outlet></router-outlet>
+</div>
