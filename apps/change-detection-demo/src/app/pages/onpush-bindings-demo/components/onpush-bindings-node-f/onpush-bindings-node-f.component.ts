@@ -20,7 +20,7 @@ export class OnpushBindingsNodeFComponent extends AbsctractComponentNode {
 
   @Input()
   set counter(counter: number) {
-    this.log('set counter');
+    this.log(`set counter: ${counter}`);
     this.wrappedCounter = counter;
   }
 
