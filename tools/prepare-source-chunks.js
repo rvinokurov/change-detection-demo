@@ -97,16 +97,18 @@ function getMethods(classInfo, lines) {
   const classBody = findInfo('ClassBody', classInfo);
   const methods = findInfo('ClassMethod', classBody);
 
-  return (Array.isArray(methods) ? methods : []).map((method) => {
-    return {
-      name: method.key.id,
-      body: `${printMethod(
-        lines,
-        method.node.loc.start.line,
-        method.node.loc.end.line
-      )}`,
-    };
-  });
+  return (Array.isArray(methods) ? methods : [methods])
+    .filter((method) => !!method)
+    .map((method) => {
+      return {
+        name: method.key.id,
+        body: `${printMethod(
+          lines,
+          method.node.loc.start.line,
+          method.node.loc.end.line
+        )}`,
+      };
+    });
 }
 
 // getClassInfo(code);
@@ -130,5 +132,3 @@ glob(`${sourceRoot}/**/*.ts`, function (er, files) {
     { encoding: 'utf8' }
   );
 });
-
-console.log(__dirname);

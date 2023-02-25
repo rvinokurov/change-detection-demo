@@ -286,7 +286,12 @@ export const classInfo = [
         "body": "@Output() counterChange = new EventEmitter();"
       }
     ],
-    "methods": []
+    "methods": [
+      {
+        "name": "updateCounter",
+        "body": "updateCounter(counter: number) {\n  this.counter = counter;\n  this.log('emit counter');\n  this.counterChange.emit(counter);\n}"
+      }
+    ]
   },
   {
     "className": "OnpushBindingsNodeCComponent",
@@ -404,7 +409,12 @@ export const classInfo = [
         "body": "nodeColor = '#e0e0e0';"
       }
     ],
-    "methods": []
+    "methods": [
+      {
+        "name": "constructor",
+        "body": "constructor() {\n  super();\n  inject(LogSettingsService).configure({doCheck: false, onInit: false})\n}"
+      }
+    ]
   },
   {
     "className": "OnpushNodeAComponent",
@@ -493,7 +503,12 @@ export const classInfo = [
         "body": "nodeColor = '#ffd1d1';"
       }
     ],
-    "methods": []
+    "methods": [
+      {
+        "name": "click",
+        "body": "click($event: MouseEvent) {\n  $event.stopPropagation();\n  this.log(`click ${this.title}`);\n}"
+      }
+    ]
   },
   {
     "className": "OnpushNodeEComponent",
@@ -570,6 +585,11 @@ export const classInfo = [
         "body": "nodeColor = '#e0e0e0';"
       }
     ],
-    "methods": []
+    "methods": [
+      {
+        "name": "constructor",
+        "body": "constructor() {\n  super();\n  inject(LogSettingsService).configure({ doCheck: true, onInit: true });\n}"
+      }
+    ]
   }
 ];

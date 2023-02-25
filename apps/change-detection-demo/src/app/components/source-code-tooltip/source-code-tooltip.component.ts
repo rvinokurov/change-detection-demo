@@ -36,7 +36,6 @@ export class SourceCodeTooltipComponent {
       this.isOpen = isOpen;
       this.coords = coords;
       this.content = content ?? '';
-      console.log('detected');
       this.cdr.markForCheck();
     });
   }

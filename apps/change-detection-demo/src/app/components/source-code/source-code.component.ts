@@ -58,7 +58,6 @@ export class SourceCodeComponent implements AfterViewInit, OnDestroy {
   }
 
   showCode() {
-    console.log('show');
     const className = this.instance.constructor.name;
     const methodName = this.parseMethodName(this.method.toString());
     this.tooltipService.show(
