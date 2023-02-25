@@ -1,16 +1,18 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter, Output,
+  EventEmitter,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbsctractComponentNode } from '../../../../absctract-component-node';
+import { SourceCodeComponent } from '../../../../components/source-code/source-code.component';
 
 @Component({
   selector: 'onpush-bindings-node-c',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SourceCodeComponent],
   templateUrl: './onpush-bindings-node-c.component.html',
   styleUrls: ['./onpush-bindings-node-c.component.css'],
   encapsulation: ViewEncapsulation.Emulated,

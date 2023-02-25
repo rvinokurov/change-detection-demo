@@ -79,6 +79,46 @@ export const classInfo = [
     ]
   },
   {
+    "className": "SourceCodeInlineComponent",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "code",
+        "body": "@Input() code = '';"
+      },
+      {
+        "name": "button",
+        "body": "@ViewChild('button') button: ElementRef<HTMLElement> | null = null;"
+      },
+      {
+        "name": "tooltipService",
+        "body": "private readonly tooltipService = inject(TooltipService);"
+      },
+      {
+        "name": "elementRef",
+        "body": "private readonly elementRef = inject(ElementRef);"
+      },
+      {
+        "name": "click",
+        "body": "click = ($event: MouseEvent) => {\n  $event.stopPropagation();\n  this.showCode();\n};"
+      }
+    ],
+    "methods": [
+      {
+        "name": "ngAfterViewInit",
+        "body": "ngAfterViewInit() {\n  this.button?.nativeElement.addEventListener('click', this.click);\n}"
+      },
+      {
+        "name": "ngOnDestroy",
+        "body": "ngOnDestroy() {\n  this.button?.nativeElement.removeEventListener('click', this.click);\n}"
+      },
+      {
+        "name": "showCode",
+        "body": "showCode() {\n  this.tooltipService.show(this.elementRef.nativeElement, this.code);\n}"
+      }
+    ]
+  },
+  {
     "className": "SourceCodeTooltipComponent",
     "superClass": null,
     "properties": [
@@ -106,7 +146,7 @@ export const classInfo = [
     "methods": [
       {
         "name": "ngOnInit",
-        "body": "ngOnInit() {\n  this.tooltipService.isOpen$.subscribe(({ isOpen, coords, content }) => {\n    this.isOpen = isOpen;\n    this.coords = coords;\n    this.content = content ?? '';\n    console.log('detected');\n    this.cdr.markForCheck();\n  });\n}"
+        "body": "ngOnInit() {\n  this.tooltipService.isOpen$.subscribe(({ isOpen, coords, content }) => {\n    this.isOpen = isOpen;\n    this.coords = coords;\n    this.content = content ?? '';\n    this.cdr.markForCheck();\n  });\n}"
       },
       {
         "name": "top",
@@ -202,7 +242,7 @@ export const classInfo = [
       },
       {
         "name": "showCode",
-        "body": "showCode() {\n  console.log('show');\n  const className = this.instance.constructor.name;\n  const methodName = this.parseMethodName(this.method.toString());\n  this.tooltipService.show(\n    this.elementRef.nativeElement,\n    this.getMethodBody(className, methodName)\n  );\n}"
+        "body": "showCode() {\n  const className = this.instance.constructor.name;\n  const methodName = this.parseMethodName(this.method.toString());\n  this.tooltipService.show(\n    this.elementRef.nativeElement,\n    this.getMethodBody(className, methodName)\n  );\n}"
       }
     ]
   },
