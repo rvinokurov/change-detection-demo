@@ -52,8 +52,9 @@ export class SourceCodeComponent implements AfterViewInit, OnDestroy {
     return (
       classInfo
         .find((classInfo) => classInfo?.className === className)
-        ?.methods.find((method) => method.name === methodName)?.body || ''
-    );
+        ?.methods.filter((method) => method.name === methodName)
+        ?.map(({ body }) => body) || []
+    ).join('\n\n');
   }
 
   private getTemplateBody(className: string, template: string): string {
