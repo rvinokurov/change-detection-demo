@@ -2,11 +2,12 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation,} from '@an
 import {CommonModule} from '@angular/common';
 import {AbsctractComponentNode} from '../../../../absctract-component-node';
 import {OnpushBindingsNodeCComponent} from "../onpush-bindings-node-c/onpush-bindings-node-c.component";
+import {SourceCodeComponent} from "../../../../components/source-code/source-code.component";
 
 @Component({
   selector: 'onpush-bindings-node-e',
   standalone: true,
-  imports: [CommonModule, OnpushBindingsNodeCComponent],
+  imports: [CommonModule, OnpushBindingsNodeCComponent, SourceCodeComponent],
   templateUrl: './onpush-bindings-node-e.component.html',
   styleUrls: ['./onpush-bindings-node-e.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
