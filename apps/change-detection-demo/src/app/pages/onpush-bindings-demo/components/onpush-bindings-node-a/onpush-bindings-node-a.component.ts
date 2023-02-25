@@ -1,14 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AbsctractComponentNode } from '../../../../absctract-component-node';
-import { OnpushBindingsNodeBComponent } from '../onpush-bindings-node-b/onpush-bindings-node-b.component';
-import { OnpushBindingsNodeFComponent } from '../onpush-bindings-node-f/onpush-bindings-node-f.component';
-import { BehaviorSubject, delay } from 'rxjs';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation,} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AbsctractComponentNode} from '../../../../absctract-component-node';
+import {OnpushBindingsNodeBComponent} from '../onpush-bindings-node-b/onpush-bindings-node-b.component';
+import {OnpushBindingsNodeFComponent} from '../onpush-bindings-node-f/onpush-bindings-node-f.component';
+import {BehaviorSubject, delay} from 'rxjs';
+import {Inspect} from "../../../../decorators/inspect.decorator";
+import {SourceCodeComponent} from "../../../../components/source-code/source-code.component";
 
+@Inspect
 @Component({
   selector: 'onpush-bindings-node-a',
   standalone: true,
@@ -16,6 +15,7 @@ import { BehaviorSubject, delay } from 'rxjs';
     CommonModule,
     OnpushBindingsNodeBComponent,
     OnpushBindingsNodeFComponent,
+    SourceCodeComponent,
   ],
   templateUrl: './onpush-bindings-node-a.component.html',
   styleUrls: ['./onpush-bindings-node-a.component.css'],

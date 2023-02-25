@@ -55,4 +55,8 @@ export abstract class AbsctractComponentNode implements OnInit, DoCheck {
   get className() {
     return 'onpush-node';
   }
+
+  get instance() {
+    return this;
+  }
 }

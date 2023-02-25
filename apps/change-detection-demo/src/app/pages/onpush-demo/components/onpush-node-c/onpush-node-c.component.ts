@@ -8,11 +8,13 @@ import {
 import { CommonModule } from '@angular/common';
 import { OnpushNodeEComponent } from '../onpush-node-e/onpush-node-e.component';
 import { AbsctractComponentNode } from '../../../../absctract-component-node';
+import {SourceCodeComponent} from "../../../../components/source-code/source-code.component";
+import {OnpushNodeJComponent} from "../onpush-node-j/onpush-node-j.component";
 
 @Component({
   selector: 'onpush-node-c',
   standalone: true,
-  imports: [CommonModule, OnpushNodeEComponent],
+    imports: [CommonModule, OnpushNodeEComponent, SourceCodeComponent, OnpushNodeJComponent],
   templateUrl: './onpush-node-c.component.html',
   styleUrls: ['./onpush-node-c.component.css'],
   encapsulation: ViewEncapsulation.Emulated,

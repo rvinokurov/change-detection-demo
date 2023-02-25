@@ -1,2 +1,5 @@
-<h3>Component {{ title }}</h3>
-re-rendered: {{ countOfReRender }}
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+  <change-detection-demo-source-code [instance]="instance" [combined]="['ngDoCheck']" />
+</div>

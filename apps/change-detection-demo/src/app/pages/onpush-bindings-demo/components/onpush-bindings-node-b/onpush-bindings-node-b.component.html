@@ -1,5 +1,19 @@
-<h3>Component {{ title }}</h3>
-re-rendered: {{ countOfReRender }}
-<onpush-bindings-node-c (counterChange)="updateCounter($event)"/>
-<onpush-bindings-node-d />
-<onpush-bindings-node-e [counter]="counter"/>
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  <div>re-rendered: {{ countOfReRender }}</div>
+  <change-detection-demo-source-code [instance]="instance" template="nodeC" />
+  <change-detection-demo-source-code
+    [instance]="instance"
+    [combined]="['counterChange', 'updateCounter']"
+  />
+</div>
+<div class="components">
+  <onpush-bindings-node-c #nodeC (counterChange)="updateCounter($event)" />
+  <onpush-bindings-node-d />
+  <div class="binding">
+    binding
+    <change-detection-demo-source-code [instance]="instance" template="nodeE" />
+
+    <onpush-bindings-node-e #nodeE [counter]="counter" />
+  </div>
+</div>

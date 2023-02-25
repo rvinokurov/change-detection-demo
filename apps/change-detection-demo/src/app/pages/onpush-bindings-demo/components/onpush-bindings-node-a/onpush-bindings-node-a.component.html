@@ -1,7 +1,28 @@
-<h3>Component {{ title }}</h3>
-re-rendered: {{ countOfReRender }}
-<div>counter: {{ counter }}</div>
-<onpush-bindings-node-b (counterChange)="updateCounter($event)" />
-<onpush-bindings-node-f
-  [counter]="processAsyncCounter(delayedCounter$ | async)"
-/>
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+  <div>counter: {{ counter }}</div>
+  <change-detection-demo-source-code [instance]="instance" template="nodeB" />
+  <change-detection-demo-source-code
+    [instance]="instance"
+    [combined]="[
+      'wrappedCounter',
+      'counter$',
+      'delayedCounter$',
+      'counter',
+      'updateCounter',
+      'processAsyncCounter'
+    ]"
+  />
+</div>
+<div class="components">
+  <onpush-bindings-node-b #nodeB (counterChange)="updateCounter($event)" />
+  <div class="binding">
+    binding
+    <change-detection-demo-source-code [instance]="instance" template="nodeF" />
+    <onpush-bindings-node-f
+      #nodeF
+      [counter]="processAsyncCounter(delayedCounter$ | async)"
+    />
+  </div>
+</div>
