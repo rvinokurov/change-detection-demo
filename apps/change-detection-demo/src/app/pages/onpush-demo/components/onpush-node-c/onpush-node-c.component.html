@@ -45,5 +45,10 @@
   <div>Second counter: {{ counter }}</div>
 </div>
 <div class="components">
-  <onpush-node-e [counter]="counter" />
+  <div class="binding">
+    binding
+    <change-detection-demo-source-code [instance]="instance" template="nodeE" />
+    <onpush-node-e #nodeE [counter]="counter" />
+  </div>
+  <onpush-node-j />
 </div>

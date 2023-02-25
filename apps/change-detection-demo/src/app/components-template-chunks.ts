@@ -72,7 +72,12 @@ export const templateInfo = [
   },
   {
     "className": "OnpushNodeCComponent",
-    "tags": []
+    "tags": [
+      {
+        "name": "nodeE",
+        "body": "<onpush-node-e #nodeE [counter]=\"counter\" />"
+      }
+    ]
   },
   {
     "className": "OnpushNodeDComponent",
