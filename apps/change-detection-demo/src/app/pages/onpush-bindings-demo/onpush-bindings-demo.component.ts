@@ -14,7 +14,7 @@ import {LogSettingsService} from "../../log-settings.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnpushBindingsDemoComponent extends AbsctractComponentNode {
-  title = 'OnPush Demo';
+  title = 'OnPush Bindings Demo';
 
   nodeColor = '#e0e0e0';
 
