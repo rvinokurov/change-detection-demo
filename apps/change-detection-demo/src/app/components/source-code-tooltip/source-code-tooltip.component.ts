@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   HostBinding,
@@ -6,10 +7,10 @@ import {
   inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OpenMessage, TooltipService } from './tooltip.service';
-import { HighlightModule } from 'ngx-highlightjs';
-import { HighlightPlusModule } from 'ngx-highlightjs/plus';
+import {CommonModule} from '@angular/common';
+import {OpenMessage, TooltipService} from './tooltip.service';
+import {HighlightModule} from 'ngx-highlightjs';
+import {HighlightPlusModule} from 'ngx-highlightjs/plus';
 
 // todo отписки не интересны для учебного проекта
 @Component({
@@ -19,6 +20,7 @@ import { HighlightPlusModule } from 'ngx-highlightjs/plus';
   templateUrl: './source-code-tooltip.component.html',
   styleUrls: ['./source-code-tooltip.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceCodeTooltipComponent {
   private readonly cdr = inject(ChangeDetectorRef);
@@ -34,6 +36,7 @@ export class SourceCodeTooltipComponent {
       this.isOpen = isOpen;
       this.coords = coords;
       this.content = content ?? '';
+      console.log('detected');
       this.cdr.markForCheck();
     });
   }

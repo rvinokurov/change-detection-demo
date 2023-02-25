@@ -52,6 +52,10 @@ export const classInfo = [
       {
         "name": "className",
         "body": "@HostBinding('class')\nget className() {\n  return 'onpush-node';\n}"
+      },
+      {
+        "name": "instance",
+        "body": "get instance() {\n  return this;\n}"
       }
     ]
   },
@@ -62,7 +66,7 @@ export const classInfo = [
     "methods": [
       {
         "name": "logOptions",
-        "body": "protected logOptions() {\n  return [\n    `color: white`,\n    `background: gray`,\n    `padding: 2px 10px 2px 10px`,\n    `margin: 20px 10px`,\n    'font-weight: 600',\n    'border-radius: 3px'\n  ];\n}"
+        "body": "protected logOptions() {\n  return [\n    `color: white`,\n    `background: gray`,\n    `padding: 2px 10px 2px 10px`,\n    `margin: 20px 10px`,\n    'font-weight: 600',\n    'border-radius: 3px',\n  ];\n}"
       },
       {
         "name": "log",
@@ -70,7 +74,135 @@ export const classInfo = [
       },
       {
         "name": "constructor",
-        "body": "constructor(private readonly ngZone: NgZone) {\n  this.ngZone.onStable.subscribe(() => {\n    this.log('Zone stable');\n  })\n\n  this.ngZone.onUnstable.subscribe(() => {\n    this.log('Zone unstable');\n  })\n}"
+        "body": "constructor(private readonly ngZone: NgZone) {\n  this.ngZone.onStable.subscribe(() => {\n    this.log('Zone stable');\n  });\n\n  this.ngZone.onUnstable.subscribe(() => {\n    this.log('Zone unstable');\n  });\n}"
+      }
+    ]
+  },
+  {
+    "className": "SourceCodeTooltipComponent",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "cdr",
+        "body": "private readonly cdr = inject(ChangeDetectorRef);"
+      },
+      {
+        "name": "tooltipService",
+        "body": "private readonly tooltipService = inject(TooltipService);"
+      },
+      {
+        "name": "isOpen",
+        "body": "private isOpen = false;"
+      },
+      {
+        "name": "coords",
+        "body": "private coords: OpenMessage['coords'];"
+      },
+      {
+        "name": "content",
+        "body": "content: string = '';"
+      }
+    ],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "body": "ngOnInit() {\n  this.tooltipService.isOpen$.subscribe(({ isOpen, coords, content }) => {\n    this.isOpen = isOpen;\n    this.coords = coords;\n    this.content = content ?? '';\n    console.log('detected');\n    this.cdr.markForCheck();\n  });\n}"
+      },
+      {
+        "name": "top",
+        "body": "@HostBinding('style.top')\nget top() {\n  return `${this.coords?.top ? this.coords.top : 0}px`;\n}"
+      },
+      {
+        "name": "left",
+        "body": "@HostBinding('style.left')\nget left() {\n  return `${this.coords?.right ? this.coords.right : 0}px`;\n}"
+      },
+      {
+        "name": "display",
+        "body": "@HostBinding('style.display')\nget display() {\n  return this.isOpen ? 'block' : 'none';\n}"
+      },
+      {
+        "name": "click",
+        "body": "@HostListener('click', ['$event'])\nclick($event: MouseEvent) {\n  $event.stopPropagation();\n}"
+      }
+    ]
+  },
+  {
+    "className": "TooltipService",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "document",
+        "body": "private readonly document = inject<Document>(DOCUMENT);"
+      },
+      {
+        "name": "isOpenSubject$",
+        "body": "private readonly isOpenSubject$ = new BehaviorSubject<OpenMessage>({\n  isOpen: false,\n});"
+      },
+      {
+        "name": "isOpen$",
+        "body": "readonly isOpen$ = this.isOpenSubject$.asObservable();"
+      }
+    ],
+    "methods": [
+      {
+        "name": "constructor",
+        "body": "constructor() {\n  this.document.addEventListener('click', () => {\n    this.isOpenSubject$.next({ isOpen: false });\n  });\n}"
+      },
+      {
+        "name": "show",
+        "body": "show(element: HTMLElement, content: string) {\n  const rect = element.getBoundingClientRect();\n  this.isOpenSubject$.next({\n    isOpen: true,\n    coords: rect,\n    content: content,\n  });\n}"
+      }
+    ]
+  },
+  {
+    "className": "SourceCodeComponent",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "method",
+        "body": "@Input() method: Function = () => {};"
+      },
+      {
+        "name": "instance",
+        "body": "@Input() instance: Object = {};"
+      },
+      {
+        "name": "button",
+        "body": "@ViewChild('button') button: ElementRef<HTMLElement> | null = null;"
+      },
+      {
+        "name": "tooltipService",
+        "body": "private readonly tooltipService = inject(TooltipService);"
+      },
+      {
+        "name": "elementRef",
+        "body": "private readonly elementRef = inject(ElementRef);"
+      },
+      {
+        "name": "click",
+        "body": "click = ($event: MouseEvent) => {\n  $event.stopPropagation();\n  this.showCode();\n};"
+      }
+    ],
+    "methods": [
+      {
+        "name": "parseMethodName",
+        "body": "parseMethodName(name: string) {\n  const match = name.match(/^[A-z[0-9_]+/);\n  return match && match[0] ? match[0] : '';\n}"
+      },
+      {
+        "name": "getMethodBody",
+        "body": "private getMethodBody(className: string, methodName: string): string {\n  return (\n    classInfo\n      .find((classInfo) => classInfo?.className === className)\n      ?.methods.find((method) => method.name === methodName)?.body || ''\n  );\n}"
+      },
+      {
+        "name": "ngAfterViewInit",
+        "body": "ngAfterViewInit() {\n  this.button?.nativeElement.addEventListener('click', this.click);\n}"
+      },
+      {
+        "name": "ngOnDestroy",
+        "body": "ngOnDestroy() {\n  this.button?.nativeElement.removeEventListener('click', this.click);\n}"
+      },
+      {
+        "name": "showCode",
+        "body": "showCode() {\n  console.log('show');\n  const className = this.instance.constructor.name;\n  const methodName = this.parseMethodName(this.method.toString());\n  this.tooltipService.show(\n    this.elementRef.nativeElement,\n    this.getMethodBody(className, methodName)\n  );\n}"
       }
     ]
   },

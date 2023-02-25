@@ -1,18 +1,49 @@
-<h3>Component {{ title }}</h3>
-re-rendered: {{ countOfReRender }}
-<div>
-  <button (click)="click($event)">Click me!</button>
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+
+  <div>
+    <button (click)="click($event)">Click me!</button>
+    <change-detection-demo-source-code [instance]="instance" [method]="click" />
+  </div>
+  <div>
+    <h3>Run counter with setInterval(1000)</h3>
+    <div>
+      <button (click)="runCounter()">Simple!</button>
+      <change-detection-demo-source-code
+        [instance]="instance"
+        [method]="runCounter"
+      />
+    </div>
+    <div>
+      <button (click)="runCounterWithMarkForCheck()">With markForCheck!</button>
+      <change-detection-demo-source-code
+        [instance]="instance"
+        [method]="runCounterWithMarkForCheck"
+      />
+    </div>
+    <div>
+      <button (click)="runCounterWithMarkForCheckOutSideZone()">
+        With markForCheck outside NgZone!
+      </button>
+      <change-detection-demo-source-code
+        [instance]="instance"
+        [method]="runCounterWithMarkForCheckOutSideZone"
+      />
+    </div>
+    <div>
+      <button (click)="runCounterWithDetectChangesOutSideZone()">
+        With detectChanges outside NgZone!
+      </button>
+      <change-detection-demo-source-code
+        [instance]="instance"
+        [method]="runCounterWithDetectChangesOutSideZone"
+      />
+    </div>
+  </div>
+
+  <div>Second counter: {{ counter }}</div>
 </div>
-<div>
-  <h3>Run counter with setInterval(1000)</h3>
-  <button (click)="runCounter()">Simple!</button>
-  <button (click)="runCounterWithMarkForCheck()">With markForCheck!</button>
-  <button (click)="runCounterWithMarkForCheckOutSideZone()">
-    With markForCheck outside NgZone!
-  </button>
-  <button (click)="runCounterWithDetectChangesOutSideZone()">
-    With detectChanges outside NgZone!
-  </button>
+<div class="components">
+  <onpush-node-e [counter]="counter" />
 </div>
-<div>Second counter: {{ counter }}</div>
-<onpush-node-e [counter]="counter" />
