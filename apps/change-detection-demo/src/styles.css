@@ -4,6 +4,10 @@ body, html {
   padding: 0;
 }
 
+body {
+  position: relative;
+}
+
 * {
   font-family: -apple-system, Verdana, Arial, serif;
   font-size: 13px;
