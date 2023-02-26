@@ -1,6 +1,5 @@
 const { parse: babelParse } = require('@babel/parser');
 const { parse: astParse, find, findInfo } = require('ast-parser');
-const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 
@@ -111,14 +110,10 @@ function getMethods(classInfo, lines) {
     });
 }
 
+function createTemplatesTree(sourceRoot) {
+  const files = glob.sync(`${sourceRoot}/**/*.ts`) || [];
 
-const sourceRoot = path.join(
-  __dirname,
-  '..',
-  'apps/change-detection-demo/src/app'
-);
-glob(`${sourceRoot}/**/*.ts`, function (er, files) {
-  const info = files
+  const tree = files
     .filter((filePath) => !filePath.match(/spec\.ts$/))
     .map((filePath) => {
       const templatePath = filePath.substring(0, filePath.length - 3) + '.html';
@@ -129,7 +124,6 @@ glob(`${sourceRoot}/**/*.ts`, function (er, files) {
     })
     .filter(({ templatePath }) => fs.existsSync(templatePath))
     .map(({ filePath, templatePath }) => {
-      console.log(templatePath);
       const code = fs.readFileSync(filePath, 'utf8');
       const classInfo = getClassInfo(code);
       const template = fs.readFileSync(templatePath, 'utf8');
@@ -154,10 +148,18 @@ glob(`${sourceRoot}/**/*.ts`, function (er, files) {
     })
     .filter((info) => info);
 
-  console.log('info', info);
+  return JSON.stringify(tree, null, '  ');
+}
+
+function saveTemplateTree(path, tree) {
   fs.writeFileSync(
-    path.join(sourceRoot, 'components-template-chunks.ts'),
-    `export const templateInfo = ${JSON.stringify(info, null, '  ')};`,
+    path,
+    `export const templateInfo = ${tree};`,
     { encoding: 'utf8' }
   );
-});
+}
+
+module.exports = {
+  createTemplatesTree,
+  saveTemplateTree,
+};
