@@ -96,6 +96,10 @@ export const templateInfo = [
     "tags": []
   },
   {
+    "className": "OnpushNodeJComponent",
+    "tags": []
+  },
+  {
     "className": "OnpushDemoComponent",
     "tags": []
   }

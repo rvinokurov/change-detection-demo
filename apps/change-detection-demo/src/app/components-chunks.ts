@@ -79,46 +79,6 @@ export const classInfo = [
     ]
   },
   {
-    "className": "SourceCodeInlineComponent",
-    "superClass": null,
-    "properties": [
-      {
-        "name": "code",
-        "body": "@Input() code = '';"
-      },
-      {
-        "name": "button",
-        "body": "@ViewChild('button') button: ElementRef<HTMLElement> | null = null;"
-      },
-      {
-        "name": "tooltipService",
-        "body": "private readonly tooltipService = inject(TooltipService);"
-      },
-      {
-        "name": "elementRef",
-        "body": "private readonly elementRef = inject(ElementRef);"
-      },
-      {
-        "name": "click",
-        "body": "click = ($event: MouseEvent) => {\n  $event.stopPropagation();\n  this.showCode();\n};"
-      }
-    ],
-    "methods": [
-      {
-        "name": "ngAfterViewInit",
-        "body": "ngAfterViewInit() {\n  this.button?.nativeElement.addEventListener('click', this.click);\n}"
-      },
-      {
-        "name": "ngOnDestroy",
-        "body": "ngOnDestroy() {\n  this.button?.nativeElement.removeEventListener('click', this.click);\n}"
-      },
-      {
-        "name": "showCode",
-        "body": "showCode() {\n  this.tooltipService.show(this.elementRef.nativeElement, this.code);\n}"
-      }
-    ]
-  },
-  {
     "className": "SourceCodeTooltipComponent",
     "superClass": null,
     "properties": [
@@ -207,6 +167,14 @@ export const classInfo = [
         "body": "@Input() instance: Object = {};"
       },
       {
+        "name": "template",
+        "body": "@Input() template: string = '';"
+      },
+      {
+        "name": "combined",
+        "body": "@Input() combined: Array<string> = [];"
+      },
+      {
         "name": "button",
         "body": "@ViewChild('button') button: ElementRef<HTMLElement> | null = null;"
       },
@@ -229,8 +197,20 @@ export const classInfo = [
         "body": "parseMethodName(name: string) {\n  const match = name.match(/^[A-z[0-9_]+/);\n  return match && match[0] ? match[0] : '';\n}"
       },
       {
+        "name": "getPropertyBody",
+        "body": "private getPropertyBody(className: string, propertyName: string): string {\n  return (\n    classInfo\n      .find((classInfo) => classInfo?.className === className)\n      ?.properties.find((property) => property.name === propertyName)?.body ||\n    ''\n  );\n}"
+      },
+      {
         "name": "getMethodBody",
-        "body": "private getMethodBody(className: string, methodName: string): string {\n  return (\n    classInfo\n      .find((classInfo) => classInfo?.className === className)\n      ?.methods.find((method) => method.name === methodName)?.body || ''\n  );\n}"
+        "body": "private getMethodBody(className: string, methodName: string): string {\n  return (\n    classInfo\n      .find((classInfo) => classInfo?.className === className)\n      ?.methods.filter((method) => method.name === methodName)\n      ?.map(({ body }) => body) || []\n  ).join('\\n\\n');\n}"
+      },
+      {
+        "name": "getTemplateBody",
+        "body": "private getTemplateBody(className: string, template: string): string {\n  return (\n    templateInfo\n      .find((classInfo) => classInfo?.className === className)\n      ?.tags.find((method) => method.name === template)?.body || ''\n  );\n}"
+      },
+      {
+        "name": "getClassPartBody",
+        "body": "private getClassPartBody(className: string): string {\n  return [\n    ...this.combined\n      .map((part) => this.getPropertyBody(className, part))\n      .filter((part) => part.length),\n    ...this.combined\n      .map((part) => this.getMethodBody(className, part))\n      .filter((part) => part.length),\n  ].join('\\n\\n');\n}"
       },
       {
         "name": "ngAfterViewInit",
@@ -242,7 +222,7 @@ export const classInfo = [
       },
       {
         "name": "showCode",
-        "body": "showCode() {\n  const className = this.instance.constructor.name;\n  const methodName = this.parseMethodName(this.method.toString());\n  this.tooltipService.show(\n    this.elementRef.nativeElement,\n    this.getMethodBody(className, methodName)\n  );\n}"
+        "body": "showCode() {\n  const className = this.instance.constructor.name;\n  const methodName = this.parseMethodName(this.method.toString());\n\n  this.tooltipService.show(\n    this.elementRef.nativeElement,\n    this.template\n      ? this.getTemplateBody(className, this.template)\n      : this.combined.length\n      ? this.getClassPartBody(className)\n      : this.getMethodBody(className, methodName)\n  );\n}"
       }
     ]
   },
@@ -611,6 +591,21 @@ export const classInfo = [
         "body": "override ngDoCheck() {\n  super.ngDoCheck();\n  this.counter++;\n\n  if(this.counter % 2 === 0) {\n    this.cdr.markForCheck();\n  }\n}"
       }
     ]
+  },
+  {
+    "className": "OnpushNodeJComponent",
+    "superClass": "AbsctractComponentNode",
+    "properties": [
+      {
+        "name": "title",
+        "body": "title = 'J';"
+      },
+      {
+        "name": "nodeColor",
+        "body": "nodeColor = 'deepskyblue';"
+      }
+    ],
+    "methods": []
   },
   {
     "className": "OnpushDemoComponent",

@@ -1,6 +1,5 @@
 const { parse: babelParse } = require('@babel/parser');
 const { parse: astParse, find, findInfo } = require('ast-parser');
-const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 
@@ -111,24 +110,25 @@ function getMethods(classInfo, lines) {
     });
 }
 
-// getClassInfo(code);
-
-const sourceRoot = path.join(
-  __dirname,
-  '..',
-  'apps/change-detection-demo/src/app'
-);
-glob(`${sourceRoot}/**/*.ts`, function (er, files) {
-  const info = files
+function createSourceTree(sourceRoot) {
+  const tree = (glob.sync(`${sourceRoot}/**/*.ts`) || [])
     .filter((filePath) => !filePath.match(/spec\.ts$/))
     .map((filePath) => {
       const code = fs.readFileSync(filePath, 'utf8');
       return getClassInfo(code);
     })
     .filter((info) => info);
-  fs.writeFileSync(
-    path.join(sourceRoot, 'components-chunks.ts'),
-    `export const classInfo = ${JSON.stringify(info, null, '  ')};`,
-    { encoding: 'utf8' }
-  );
-});
+
+  return JSON.stringify(tree, null, '  ');
+}
+
+function saveTree(path, tree) {
+  fs.writeFileSync(path, `export const classInfo = ${tree};`, {
+    encoding: 'utf8',
+  });
+}
+
+module.exports = {
+  createSourceTree,
+  saveTree,
+};
