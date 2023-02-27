@@ -28,6 +28,7 @@ export class OnpushNodeGComponent extends AbsctractComponentNode {
     super.ngDoCheck();
     this.counter++;
 
+
     if(this.counter % 2 === 0) {
       this.cdr.markForCheck();
     }

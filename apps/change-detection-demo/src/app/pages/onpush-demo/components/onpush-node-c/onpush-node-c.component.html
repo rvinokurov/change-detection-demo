@@ -32,12 +32,12 @@
       />
     </div>
     <div>
-      <button (click)="runCounterWithDetectChangesOutSideZone()">
+      <button #runOutsideZone>
         With detectChanges outside NgZone!
       </button>
       <change-detection-demo-source-code
         [instance]="instance"
-        [method]="runCounterWithDetectChangesOutSideZone"
+        [combined]="['runOutsideZone', 'ngAfterViewInit', 'runCounterWithDetectChangesOutSideZone']"
       />
     </div>
   </div>

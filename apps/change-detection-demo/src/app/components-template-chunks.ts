@@ -74,6 +74,10 @@ export const templateInfo = [
     "className": "OnpushNodeCComponent",
     "tags": [
       {
+        "name": "runOutsideZone",
+        "body": "<button #runOutsideZone>"
+      },
+      {
         "name": "nodeE",
         "body": "<onpush-node-e #nodeE [counter]=\"counter\" />"
       }

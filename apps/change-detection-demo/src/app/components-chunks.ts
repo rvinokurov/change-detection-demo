@@ -481,6 +481,10 @@ export const classInfo = [
       {
         "name": "counter",
         "body": "counter = 0;"
+      },
+      {
+        "name": "runOutsideZone",
+        "body": "@ViewChild('runOutsideZone') runOutsideZone: ElementRef<HTMLElement> | null = null;"
       }
     ],
     "methods": [
@@ -506,7 +510,11 @@ export const classInfo = [
       },
       {
         "name": "runCounterWithDetectChangesOutSideZone",
-        "body": "runCounterWithDetectChangesOutSideZone() {\n  this.ngZone.runOutsideAngular(() => {\n    setInterval(() => {\n      this.counter++;\n      this.cdr.detectChanges();\n    }, 1000);\n  });\n}"
+        "body": "runCounterWithDetectChangesOutSideZone($event: MouseEvent) {\n  $event.stopPropagation();\n  this.ngZone.runOutsideAngular(() => {\n    setInterval(() => {\n      this.counter++;\n      this.cdr.detectChanges();\n    }, 1000);\n  });\n}"
+      },
+      {
+        "name": "ngAfterViewInit",
+        "body": "ngAfterViewInit() {\n  this.runOutsideZone?.nativeElement.addEventListener('click', (event) => {\n    this.runCounterWithDetectChangesOutSideZone(event);\n  });\n}"
       }
     ]
   },
@@ -588,7 +596,7 @@ export const classInfo = [
       },
       {
         "name": "ngDoCheck",
-        "body": "override ngDoCheck() {\n  super.ngDoCheck();\n  this.counter++;\n\n  if(this.counter % 2 === 0) {\n    this.cdr.markForCheck();\n  }\n}"
+        "body": "override ngDoCheck() {\n  super.ngDoCheck();\n  this.counter++;\n\n\n  if(this.counter % 2 === 0) {\n    this.cdr.markForCheck();\n  }\n}"
       }
     ]
   },
