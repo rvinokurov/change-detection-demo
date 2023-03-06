@@ -102,5 +102,9 @@ export const templateInfo = [
   {
     "className": "OnpushDemoComponent",
     "tags": []
+  },
+  {
+    "className": "SignalsDemoComponent",
+    "tags": []
   }
 ];
