@@ -626,5 +626,11 @@ export const classInfo = [
         "body": "constructor() {\n  super();\n  inject(LogSettingsService).configure({ doCheck: true, onInit: true });\n}"
       }
     ]
+  },
+  {
+    "className": "SignalsDemoComponent",
+    "superClass": null,
+    "properties": [],
+    "methods": []
   }
 ];

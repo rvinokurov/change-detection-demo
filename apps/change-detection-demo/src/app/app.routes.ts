@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { OnpushDemoComponent } from './pages/onpush-demo/onpush-demo.component';
-import {OnpushBindingsDemoComponent} from "./pages/onpush-bindings-demo/onpush-bindings-demo.component";
+import { OnpushBindingsDemoComponent } from './pages/onpush-bindings-demo/onpush-bindings-demo.component';
+import { SignalsDemoComponent } from './pages/signals-demo/signals-demo.component';
 
 export const appRoutes: Route[] = [
   {
@@ -12,7 +13,11 @@ export const appRoutes: Route[] = [
     component: OnpushBindingsDemoComponent,
   },
   {
+    path: 'signals-demo',
+    component: SignalsDemoComponent,
+  },
+  {
     path: '**',
-    redirectTo: 'onpush-demo'
-  }
+    redirectTo: 'onpush-demo',
+  },
 ];
