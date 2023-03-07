@@ -95,6 +95,10 @@ class SettableSignalImpl<T> implements Producer {
     producerAccessed(this);
     return this.value;
   }
+
+  valueOf(): T {
+    return this.value;
+  }
 }
 
 /**

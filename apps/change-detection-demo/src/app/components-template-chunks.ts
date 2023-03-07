@@ -104,6 +104,31 @@ export const templateInfo = [
     "tags": []
   },
   {
+    "className": "SignalComponent",
+    "tags": []
+  },
+  {
+    "className": "SignalsDemoRootComponent",
+    "tags": []
+  },
+  {
+    "className": "SignalsNodeAComponent",
+    "tags": [
+      {
+        "name": "aButton",
+        "body": "<button #aButton>"
+      },
+      {
+        "name": "bButton",
+        "body": "<button #bButton>"
+      },
+      {
+        "name": "bButton",
+        "body": "<button #bButton>"
+      }
+    ]
+  },
+  {
     "className": "SignalsDemoComponent",
     "tags": []
   }

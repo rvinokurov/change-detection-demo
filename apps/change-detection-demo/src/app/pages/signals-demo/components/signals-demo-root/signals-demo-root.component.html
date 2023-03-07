@@ -1,0 +1,8 @@
+<my-value name="a" [value]="a()" (valueChange)="a.set($event)"></my-value>
+<my-value name="b" [value]="b()" (valueChange)="b.set($event)"></my-value>
+<div>Мои фантазии на тему интеграции RX и Примитивов</div>
+<div>a ({{ a() }}) + b ({{ b() }}) = d ({{ d$ | async }})</div>
+<div>a ({{ a() }}) + b ({{ b() }}) = e ({{ e() }})</div>
+<div>Input signal: {{ signal() }}</div>
+<div *ngIf="signal2">Input signal2: {{ signal2() }}</div>
+<div>Input signal3: {{ signal3() }}</div>

@@ -1,0 +1,11 @@
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+  <button #aButton>a++</button>
+  <button #bButton>b++</button>
+  <button #cButton>c++</button>
+  <signal-container [value]="a"/>
+  <signal-container [value]="b"/>
+  <signals-node-b [value]="c" />
+  <signals-node-c [value]="d"/>
+</div>
