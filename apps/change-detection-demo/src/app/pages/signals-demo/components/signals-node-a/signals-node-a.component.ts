@@ -7,17 +7,24 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {AbsctractComponentNode} from '../../../../absctract-component-node';
-import {SignalContainerComponent} from '../signal-container/signal-container.component';
-import {computed, signal} from '@demo/angular-next';
-import {SignalsNodeBComponent} from '../signals-node-b/signals-node-b.component';
-import {SignalsNodeCComponent} from "../signals-node-c/signals-node-c.component";
+import { CommonModule } from '@angular/common';
+import { AbsctractComponentNode } from '../../../../absctract-component-node';
+import { SignalContainerComponent } from '../signal-container/signal-container.component';
+import { computed, signal } from '@demo/angular-next';
+import { SignalsNodeBComponent } from '../signals-node-b/signals-node-b.component';
+import { SignalsNodeCComponent } from '../signals-node-c/signals-node-c.component';
+import { SignalsNodeDComponent } from '../signals-node-d/signals-node-d.component';
 
 @Component({
   selector: 'signals-node-a',
   standalone: true,
-  imports: [CommonModule, SignalContainerComponent, SignalsNodeBComponent, SignalsNodeCComponent],
+  imports: [
+    CommonModule,
+    SignalContainerComponent,
+    SignalsNodeBComponent,
+    SignalsNodeCComponent,
+    SignalsNodeDComponent,
+  ],
   templateUrl: './signals-node-a.component.html',
   styleUrls: ['./signals-node-a.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
@@ -35,13 +42,13 @@ export class SignalsNodeAComponent
   c = signal(0);
   d = computed(() => this.a() + this.b());
 
+  showD = true;
+
   @ViewChild('aButton') aButton?: ElementRef<HTMLElement>;
   @ViewChild('bButton') bButton?: ElementRef<HTMLElement>;
   @ViewChild('cButton') cButton?: ElementRef<HTMLElement>;
 
-  constructor(
-    private readonly ngZone: NgZone,
-  ) {
+  constructor(private readonly ngZone: NgZone) {
     super();
   }
 
@@ -51,7 +58,6 @@ export class SignalsNodeAComponent
       this.bButton?.nativeElement.addEventListener('click', this.clickB);
       this.cButton?.nativeElement.addEventListener('click', this.clickC);
     });
-
   }
 
   clickA = () => {
@@ -64,4 +70,8 @@ export class SignalsNodeAComponent
   clickC = () => {
     this.c.set(this.c() + 1);
   };
+
+  toggle() {
+    this.showD = !this.showD;
+  }
 }

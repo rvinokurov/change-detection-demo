@@ -14,7 +14,7 @@ import {Signal} from '@demo/angular-next';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignalsNodeCComponent extends AbsctractComponentNode {
-  nodeColor = '#d9d9a6';
+  nodeColor = '#92dee1';
   title = 'Computed';
 
   @Input() value!: Signal<any>;
