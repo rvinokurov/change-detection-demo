@@ -628,6 +628,156 @@ export const classInfo = [
     ]
   },
   {
+    "className": "AppValueComponent",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "name",
+        "body": "@Input() name?: string;"
+      },
+      {
+        "name": "value",
+        "body": "@Input() value: number = 0;"
+      },
+      {
+        "name": "valueChange",
+        "body": "@Output() valueChange = new EventEmitter<number>();"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "className": "SignalComponent",
+    "superClass": "AbsctractComponentNode",
+    "properties": [
+      {
+        "name": "nodeColor",
+        "body": "nodeColor = '#8ae759';"
+      },
+      {
+        "name": "title",
+        "body": "title = 'Signal';"
+      },
+      {
+        "name": "value",
+        "body": "@Input() @SignalInput() value: SmartSignal<Number> | Number = signal(0);"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "className": "SignalsDemoRootComponent",
+    "superClass": null,
+    "properties": [
+      {
+        "name": "a",
+        "body": "a = signal(0);"
+      },
+      {
+        "name": "b",
+        "body": "b = signal(0);"
+      },
+      {
+        "name": "c",
+        "body": "c = computed(() => this.a() + this.b());"
+      },
+      {
+        "name": "d$",
+        "body": "d$ = toObservable(this.c);"
+      },
+      {
+        "name": "e",
+        "body": "e = toSignal(this.d$);"
+      },
+      {
+        "name": "signal",
+        "body": "@Input() @SignalInput() signal = signal(0);"
+      },
+      {
+        "name": "signal2",
+        "body": "@Input() @SignalInput() signal2: Signal<number> = signal(0);"
+      },
+      {
+        "name": "signal3",
+        "body": "@Input() @SignalWithUndefined() signal3: Signal<number> = signal(0);"
+      },
+      {
+        "name": "ngAcceptInputType_signal",
+        "body": "static ngAcceptInputType_signal: number;"
+      },
+      {
+        "name": "ngAcceptInputType_signal2",
+        "body": "static ngAcceptInputType_signal2: number;"
+      }
+    ],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "body": "ngOnInit(): void {\n  // this.signal2.set() -- а вот фига 2 мы можем поменять это значение (логично же)\n\n  effect(() => {\n    const signal = this.signal();\n    console.log(`signal changed to ${signal}`);\n\n    const signal2 = this.signal2();\n    console.log(`signal2 changed to ${signal2}`);\n\n    const signal3 = this.signal3();\n    console.log(`signal3 changed to ${signal3}`);\n  });\n\n  effect(() => {});\n}"
+      }
+    ]
+  },
+  {
+    "className": "SignalsNodeAComponent",
+    "superClass": "AbsctractComponentNode",
+    "properties": [
+      {
+        "name": "nodeColor",
+        "body": "nodeColor = '#b3efd0';"
+      },
+      {
+        "name": "title",
+        "body": "title = 'A';"
+      },
+      {
+        "name": "a",
+        "body": "a = 0;"
+      },
+      {
+        "name": "b",
+        "body": "b = 0;"
+      },
+      {
+        "name": "c",
+        "body": "c = 0;"
+      },
+      {
+        "name": "aButton",
+        "body": "@ViewChild('#aButton') aButton?: ElementRef<HTMLElement>;"
+      },
+      {
+        "name": "bButton",
+        "body": "@ViewChild('#bButton') bButton?: ElementRef<HTMLElement>;"
+      },
+      {
+        "name": "cButton",
+        "body": "@ViewChild('#cButton') cButton?: ElementRef<HTMLElement>;"
+      },
+      {
+        "name": "clickA",
+        "body": "clickA = () => {\n  this.a++;\n};"
+      },
+      {
+        "name": "clickB",
+        "body": "clickB = () => {\n  this.b++;\n};"
+      },
+      {
+        "name": "clickC",
+        "body": "clickC = () => {\n  this.c++;\n};"
+      }
+    ],
+    "methods": [
+      {
+        "name": "constructor",
+        "body": "constructor(private readonly ngZone: NgZone) {\n  super();\n}"
+      },
+      {
+        "name": "ngAfterViewInit",
+        "body": "ngAfterViewInit() {\n  this.ngZone.runOutsideAngular(() => {\n    this.aButton?.nativeElement.addEventListener('click', this.clickA);\n    this.bButton?.nativeElement.addEventListener('click', this.clickB);\n    this.cButton?.nativeElement.addEventListener('click', this.clickC);\n  });\n}"
+      }
+    ]
+  },
+  {
     "className": "SignalsDemoComponent",
     "superClass": null,
     "properties": [],
