@@ -120,7 +120,6 @@ export function producerAccessed(producer: Producer): void {
       seenValueVersion: producer.valueVersion,
       atTrackingVersion: activeConsumer.trackingVersion,
     };
-    console.log('set', activeConsumer);
     activeConsumer.producers.set(producer.id, edge);
     producer.consumers.set(activeConsumer.id, edge);
   } else {
