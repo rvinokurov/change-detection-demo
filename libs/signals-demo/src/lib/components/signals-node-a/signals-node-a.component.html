@@ -4,14 +4,15 @@
   <button #aButton>a++</button>
   <button #bButton>b++</button>
   <button #cButton>c++</button>
-  <signal-container [value]="a" />
-  <signal-container [value]="b" />
+  <signal-container [signalValue]="a" />
+  <signal-container [signalValue]="b" />
   <signals-node-b [value]="c" />
   <signals-node-c [value]="d" />
 
-  <button (click)="toggle()">Toggle D</button>
-  <ng-container *ngIf="!showD; else D"> </ng-container>
-  <ng-template #D>
-    <signals-node-d [value]="c" />
-  </ng-template>
+
+<!--  <button (click)="toggle()">Toggle D</button>-->
+<!--  <ng-container *ngIf="!showD; else D"> </ng-container>-->
+<!--  <ng-template #D>-->
+<!--    <signals-node-d [value]="c" />-->
+<!--  </ng-template>-->
 </div>

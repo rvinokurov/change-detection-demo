@@ -50,8 +50,13 @@ class CompileSourceChunks {
   }
 }
 
+
+
+
+
 module.exports = {
   plugins: [
     new CompileSourceChunks(),
+
   ],
 };

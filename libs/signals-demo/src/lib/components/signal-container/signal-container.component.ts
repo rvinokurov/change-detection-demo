@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation,} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Signal,} from '@change-detection-demo/angular-next';
+import {Signal, SignalInput,} from '@change-detection-demo/angular-next';
 import {SignalPipe} from '../../pipes/signal.pipe';
-import {AbsctractComponentNode} from "@change-detection-demo/shared/core";
+import {AbsctractComponentNode} from '@change-detection-demo/shared/core';
 
 
 @Component({
@@ -18,5 +18,7 @@ export class SignalContainerComponent extends AbsctractComponentNode {
   nodeColor = '#8ae759';
   title = 'Signal';
 
-  @Input() value?: Signal<any>;
+
+  @Input() @SignalInput() signalValue!: Signal<any>;
+
 }

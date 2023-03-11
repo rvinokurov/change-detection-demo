@@ -1,9 +1,19 @@
 <div class="menu">
-  <a class="menu-item" [routerLink]="['cd-in-details']" routerLinkActive="active"
-  >Change detection in details</a
+  <a
+    class="menu-item"
+    [routerLink]="['cd-in-details']"
+    routerLinkActive="active"
+    >Change detection in details</a
   >
+  <a
+    class="menu-item"
+    [routerLink]="['async-bindings']"
+    routerLinkActive="active"
+    >Async bindings</a
+  >
+
   <a class="menu-item" [routerLink]="['onpush-demo']" routerLinkActive="active"
-  >OnPush Demo</a
+    >OnPush Demo</a
   >
   <a
     class="menu-item"
@@ -13,10 +23,10 @@
     OnPush Bindings Demo</a
   >
   <a class="menu-item" [routerLink]="['signals-demo']" routerLinkActive="active"
-  >Signals Demo</a
+    >Signals Demo</a
   >
 </div>
 <div class="page-container">
   <router-outlet></router-outlet>
 </div>
-<change-detection-demo-source-code-tooltip/>
+<change-detection-demo-source-code-tooltip />
