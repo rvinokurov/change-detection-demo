@@ -18,6 +18,12 @@
       "@change-detection-demo/angular-next": [
         "libs/shared/angular-next/src/index.ts"
       ],
+      "@change-detection-demo/async-bindings": [
+        "libs/async-bindings/src/index.ts"
+      ],
+      "@change-detection-demo/cd-in-details": [
+        "libs/cd-in-details/src/index.ts"
+      ],
       "@change-detection-demo/on-push-bindings-demo": [
         "libs/on-push-bindings-demo/src/index.ts"
       ],
