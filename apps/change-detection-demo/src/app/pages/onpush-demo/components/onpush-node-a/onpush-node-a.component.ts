@@ -19,4 +19,12 @@ import { AbsctractComponentNode } from '../../../../absctract-component-node';
 export class OnpushNodeAComponent extends AbsctractComponentNode {
   nodeColor = '#9ce388';
   title = 'A';
+
+  ngAfterContentChecked() {
+    this.log("ngAfterContentChecked");
+  }
+
+  ngAfterViewChecked() {
+    this.log("ngAfterViewChecked");
+  }
 }
