@@ -7,12 +7,12 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SignalContainerComponent } from '../signal-container/signal-container.component';
-import { computed, signal } from '@change-detection-demo/angular-next';
-import { SignalsNodeBComponent } from '../signals-node-b/signals-node-b.component';
-import { SignalsNodeCComponent } from '../signals-node-c/signals-node-c.component';
-import { SignalsNodeDComponent } from '../signals-node-d/signals-node-d.component';
+import {CommonModule} from '@angular/common';
+import {SignalContainerComponent} from '../signal-container/signal-container.component';
+import {computed, signal} from '@change-detection-demo/angular-next';
+import {SignalsNodeBComponent} from '../signals-node-b/signals-node-b.component';
+import {SignalsNodeCComponent} from '../signals-node-c/signals-node-c.component';
+import {SignalsNodeDComponent} from '../signals-node-d/signals-node-d.component';
 import {AbsctractComponentNode} from "@change-detection-demo/shared/core";
 
 @Component({
@@ -52,6 +52,8 @@ export class SignalsNodeAComponent
     super();
   }
 
+
+
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
       this.aButton?.nativeElement.addEventListener('click', this.clickA);
@@ -74,4 +76,5 @@ export class SignalsNodeAComponent
   toggle() {
     this.showD = !this.showD;
   }
+
 }

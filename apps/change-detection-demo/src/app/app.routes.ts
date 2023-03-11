@@ -32,6 +32,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'async-bindings',
+    loadChildren: () =>
+      import('@change-detection-demo/async-bindings').then(
+        (mod) => mod.asyncBindingsRoutes
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'onpush-demo',
   },

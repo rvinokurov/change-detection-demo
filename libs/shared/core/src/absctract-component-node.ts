@@ -14,6 +14,7 @@ export abstract class AbsctractComponentNode implements OnInit, DoCheck {
 
   protected readonly backgroundColor = '#1a1a1a';
 
+
   protected logOptions() {
     return [
       `color: ${this.backgroundColor}`,

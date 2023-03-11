@@ -1,11 +1,8 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import {
-  provideRouter,
-  withEnabledBlockingInitialNavigation,
-} from '@angular/router';
-import { AppComponent } from './app/app.component';
-import { appRoutes } from './app/app.routes';
-import { HIGHLIGHT_OPTIONS, HighlightOptions } from 'ngx-highlightjs';
+import {bootstrapApplication} from '@angular/platform-browser';
+import {provideRouter, withEnabledBlockingInitialNavigation,} from '@angular/router';
+import {AppComponent} from './app/app.component';
+import {appRoutes} from './app/app.routes';
+import {HIGHLIGHT_OPTIONS, HighlightOptions} from 'ngx-highlightjs';
 
 bootstrapApplication(AppComponent, {
   providers: [

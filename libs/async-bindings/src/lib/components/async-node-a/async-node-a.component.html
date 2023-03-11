@@ -1,0 +1,18 @@
+<div class="component">
+  <h3>Component {{ title }}</h3>
+  re-rendered: {{ countOfReRender }}
+</div>
+<div>
+  <button (click)="incA()">a++</button>
+  <button (click)="incB()">b++</button>
+  <button (click)="runTimer()">run timer</button>
+</div>
+<div class="components">
+  <async-node-c
+    [value]="(valueForA$ | asyncWithLogging : 'a') || 0"
+  ></async-node-c>
+  <async-node-b
+    [value]="(valueForB$ | asyncWithLogging : 'b') || 0"
+  ></async-node-b>
+  <async-node-d [value]="(interval$ | asyncWithLogging : 'timer') || 0"></async-node-d>
+</div>

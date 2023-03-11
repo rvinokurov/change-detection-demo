@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component, inject, Input, ViewEncapsulation,} f
 import {CommonModule} from '@angular/common';
 import {Signal, SignalInput} from '@change-detection-demo/angular-next';
 import {destroyableEffect, DestroyableStream} from '../../destroyable-effect';
-import {interval, tap} from 'rxjs';
 import {AbsctractComponentNode} from "@change-detection-demo/shared/core";
 
 @Component({
@@ -36,10 +35,10 @@ export class SignalsNodeDComponent extends AbsctractComponentNode {
   override ngOnInit() {
     super.ngOnInit();
 
-
-    this.destroyableStream(
-      interval(1000).pipe(tap((value) => console.log(value))),
-      true
-    );
+    //
+    // this.destroyableStream(
+    //   interval(1000).pipe(tap((value) => console.log(value))),
+    //   true
+    // );
   }
 }
