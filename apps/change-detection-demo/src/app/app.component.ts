@@ -1,11 +1,12 @@
 import {RouterModule} from '@angular/router';
-import {Component, NgZone} from '@angular/core';
+import {ChangeDetectionStrategy, Component, NgZone} from '@angular/core';
 import {SourceCodeTooltipComponent} from './components/source-code-tooltip/source-code-tooltip.component';
 
 @Component({
   standalone: true,
   imports: [RouterModule, SourceCodeTooltipComponent],
   selector: 'change-detection-demo-root',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
