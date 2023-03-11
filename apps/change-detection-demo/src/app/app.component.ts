@@ -1,6 +1,6 @@
 import {RouterModule} from '@angular/router';
 import {ChangeDetectionStrategy, Component, NgZone} from '@angular/core';
-import {SourceCodeTooltipComponent} from './components/source-code-tooltip/source-code-tooltip.component';
+import {SourceCodeTooltipComponent} from "@change-detection-demo/shared/core";
 
 @Component({
   standalone: true,

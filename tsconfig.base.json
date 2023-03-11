@@ -15,7 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@demo/angular-next": ["libs/angular-next/src/index.ts"]
+      "@change-detection-demo/angular-next": [
+        "libs/shared/angular-next/src/index.ts"
+      ],
+      "@change-detection-demo/on-push-bindings-demo": [
+        "libs/on-push-bindings-demo/src/index.ts"
+      ],
+      "@change-detection-demo/on-push-demo": ["libs/on-push-demo/src/index.ts"],
+      "@change-detection-demo/shared/core": ["libs/shared/core/src/index.ts"],
+      "@change-detection-demo/signals-demo": ["libs/signals-demo/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

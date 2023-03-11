@@ -10,7 +10,7 @@ const {
 let sourceChunks = '';
 let templateChunks = '';
 
-const sourceRoot = path.join(__dirname, '/src/app');
+const sourceRoot = path.join(__dirname, '../../');
 
 
 
