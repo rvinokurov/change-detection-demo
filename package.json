@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run change-detection-demo:serve"
+    "start": "nx run change-detection-demo:serve",
+    "build": "nx run change-detection-demo:build"
   },
   "private": true,
   "dependencies": {

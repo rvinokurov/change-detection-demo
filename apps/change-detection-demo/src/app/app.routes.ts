@@ -25,6 +25,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'cd-in-details',
+    loadChildren: () =>
+      import('@change-detection-demo/cd-in-details').then(
+        (mod) => mod.cdInDetailsRoutes
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'onpush-demo',
   },
