@@ -1,15 +1,14 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  Component,
+  Component, computed,
   ElementRef,
-  NgZone,
+  NgZone, signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SignalContainerComponent} from '../signal-container/signal-container.component';
-import {computed, signal} from '@change-detection-demo/angular-next';
 import {SignalsNodeBComponent} from '../signals-node-b/signals-node-b.component';
 import {SignalsNodeCComponent} from '../signals-node-c/signals-node-c.component';
 import {SignalsNodeDComponent} from '../signals-node-d/signals-node-d.component';

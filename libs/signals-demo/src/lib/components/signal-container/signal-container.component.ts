@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation,} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, Signal, ViewEncapsulation,} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Signal, SignalInput,} from '@change-detection-demo/angular-next';
 import {SignalPipe} from '../../pipes/signal.pipe';
 import {AbsctractComponentNode} from '@change-detection-demo/shared/core';
+import {SignalInput} from "@change-detection-demo/angular-next";
 
 
 @Component({

@@ -1,11 +1,9 @@
 import {
-  ChangeDetectorRef,
+  ChangeDetectorRef, effect, Effect,
   OnDestroy,
   Pipe,
-  PipeTransform,
+  PipeTransform, Signal,
 } from '@angular/core';
-import { effect, Signal } from '@change-detection-demo/angular-next';
-import { Effect } from '../../../../shared/angular-next/src/lib/effect';
 
 @Pipe({ name: 'signal', standalone: true, pure: false })
 export class SignalPipe implements PipeTransform, OnDestroy {
