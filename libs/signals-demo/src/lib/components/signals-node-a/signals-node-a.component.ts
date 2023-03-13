@@ -39,7 +39,7 @@ export class SignalsNodeAComponent
   a = signal(0);
   b = signal(0);
   c = signal(0);
-  d = computed(() => this.a() + this.b());
+  d = computed(() => (this.a() + this.b()) * 2);
 
   showD = true;
 
