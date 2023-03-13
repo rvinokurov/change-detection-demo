@@ -22,9 +22,11 @@ export class SignalPipe implements PipeTransform, OnDestroy {
     // нужно создать новый эффект
     if (this.currentSignal !== value) {
       this.currentSignal = value;
+
       // удалить текущий эффект если есть
       this.destroy();
 
+      // подписаться для обновления изменений в компоненте
       this.effect = effect(this.updateLatestValue);
     }
 

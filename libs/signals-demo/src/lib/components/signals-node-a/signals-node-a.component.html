@@ -4,8 +4,8 @@
   <button #aButton>a++</button>
   <button #bButton>b++</button>
   <button #cButton>c++</button>
-  <signal-container [signalValue]="a" />
-  <signal-container [signalValue]="b" />
+  <signal-container [signalValue]="a" [valueName]="'a'"/>
+  <signal-container [signalValue]="b" [valueName]="'b'"/>
   <signals-node-b [value]="c" />
   <signals-node-c [value]="d" />
 

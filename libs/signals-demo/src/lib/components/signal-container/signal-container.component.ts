@@ -18,7 +18,7 @@ export class SignalContainerComponent extends AbsctractComponentNode {
   nodeColor = '#8ae759';
   title = 'Signal';
 
-
+  @Input() valueName: string = '';
   @Input() @SignalInput() signalValue!: Signal<any>;
 
 }
