@@ -23,4 +23,8 @@ export class CdNodeCComponent extends AbsctractComponentNode {
   click() {
     this.log('button clicked');
   }
+
+  someChange() {
+    this.log('catch some change');
+  }
 }
