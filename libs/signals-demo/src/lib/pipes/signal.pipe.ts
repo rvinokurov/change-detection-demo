@@ -1,23 +1,48 @@
-import { ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
-import { effect, isSignal } from '@change-detection-demo/angular-next';
+import {
+  ChangeDetectorRef,
+  OnDestroy,
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { effect, Signal } from '@change-detection-demo/angular-next';
+import { Effect } from '../../../../shared/angular-next/src/lib/effect';
 
 @Pipe({ name: 'signal', standalone: true, pure: false })
-export class SignalPipe implements PipeTransform {
-  private current: unknown;
-  private currentValue: unknown = undefined;
+export class SignalPipe implements PipeTransform, OnDestroy {
+  private currentSignal: Signal<any> | null = null;
+  private value: any = null;
+  private effect: Effect | null = null;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
-  transform(value: unknown): unknown {
-    this.currentValue = isSignal(value) ? value() : value;
+  transform(value: Signal<any>): unknown {
+    // получение значения сигнала
+    this.value = value();
 
-    if (this.current !== value && isSignal(value)) {
-      this.current = value;
-      effect(() => {
-        this.currentValue = value();
-        this.cdr.detectChanges();
-      });
+    // если нет текущего сигнала или он изменился значению
+    // нужно создать новый эффект
+    if (this.currentSignal !== value) {
+      this.currentSignal = value;
+      // удалить текущий эффект если есть
+      this.destroy();
+
+      this.effect = effect(this.updateLatestValue);
     }
 
-    return this.currentValue;
+    return value();
   }
+
+  updateLatestValue = () => {
+    this.value = this.currentSignal!();
+
+    // от ручного  запуска CD пока никуда не деться
+    this.cdr.detectChanges();
+  };
+
+  ngOnDestroy() {
+    if (this.effect) {
+      this.effect.destroy();
+    }
+  }
+
+  private destroy() {}
 }
