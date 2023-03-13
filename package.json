@@ -4,6 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run change-detection-demo:serve",
+    "cd-demo": "nx run change-detection-demo:serve",
+    "wz-demo": "nx run without-zone:serve",
     "build": "nx run change-detection-demo:build"
   },
   "private": true,
