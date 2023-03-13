@@ -1,5 +1,4 @@
-import {isSignal} from '../api';
-import {signal} from '../signal';
+import {isSignal, signal} from "@angular/core";
 
 export function SignalInput() {
   const signalSymbol = Symbol();

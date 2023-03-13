@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, inject, Input, ViewEncapsulation,} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input, Signal, ViewEncapsulation,} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Signal, SignalInput} from '@change-detection-demo/angular-next';
+import { SignalInput} from '@change-detection-demo/angular-next';
 import {destroyableEffect, DestroyableStream} from '../../destroyable-effect';
 import {AbsctractComponentNode} from "@change-detection-demo/shared/core";
 

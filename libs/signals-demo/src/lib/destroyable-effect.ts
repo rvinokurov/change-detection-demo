@@ -1,12 +1,11 @@
 
 import {
-  ChangeDetectorRef,
+  ChangeDetectorRef, effect, Effect,
   inject,
   InjectionToken,
   ViewRef,
 } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import {effect, Effect} from "../../../shared/angular-next/src/lib/effect";
 
 export function destroyableEffect(listener: () => void): Effect {
   const viewRef = inject(ChangeDetectorRef) as ViewRef;

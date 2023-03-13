@@ -1,13 +1,12 @@
 import {Component, inject, ViewEncapsulation} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {SignalsDemoRootComponent} from "./components/signals-demo-root/signals-demo-root.component";
+import {CommonModule} from '@angular/common';
 import {SignalsNodeAComponent} from "./components/signals-node-a/signals-node-a.component";
 import {LogSettingsService} from "@change-detection-demo/shared/core";
 
 @Component({
   selector: 'change-detection-demo-signals-demo',
   standalone: true,
-  imports: [CommonModule, SignalsDemoRootComponent, SignalsNodeAComponent],
+  imports: [CommonModule, SignalsNodeAComponent],
   templateUrl: './signals-demo.component.html',
   styleUrls: ['./signals-demo.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
