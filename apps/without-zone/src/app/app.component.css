@@ -1,0 +1,20 @@
+.menu {
+  margin-bottom: 10px;
+  box-shadow: 0 3px 10px rgba(171, 171, 171, 0.6);
+  border-bottom: 1px solid #d0d0d0;
+  text-align: center;
+  background-color: #f1f1f1;
+
+}
+
+.menu-item {
+  display: inline-block;
+  padding: 10px;
+  color: #464646;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.menu-item:hover, .menu-item.active {
+  opacity: 1;
+}
