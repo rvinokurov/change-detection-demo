@@ -1,0 +1,20 @@
+<div class="component">
+  <h3>{{ title }}</h3>
+
+  <table>
+    <thead>
+      <th>Id</th>
+      <th>Author</th>
+      <th>Title</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of books | signal; let i = index">
+      <td>{{i}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.title}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

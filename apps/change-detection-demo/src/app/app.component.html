@@ -1,32 +1,18 @@
-<div class="menu">
-  <a
-    class="menu-item"
-    [routerLink]="['cd-in-details']"
-    routerLinkActive="active"
-    >Change detection in details</a
-  >
-  <a
-    class="menu-item"
-    [routerLink]="['async-bindings']"
-    routerLinkActive="active"
-    >Async bindings</a
-  >
+<div class="component">
+  <h3>{{ title }}</h3>
 
-  <a class="menu-item" [routerLink]="['onpush-demo']" routerLinkActive="active"
-    >OnPush Demo</a
-  >
-  <a
-    class="menu-item"
-    [routerLink]="['onpush-bindings-demo']"
-    routerLinkActive="active"
-  >
-    OnPush Bindings Demo</a
-  >
-  <a class="menu-item" [routerLink]="['signals-demo']" routerLinkActive="active"
-    >Signals Demo</a
-  >
+  <add-book [books]="books" />
+  <edit-book [books]="books" />
+  <books-list [books]="books" />
+
+  <books-count [books]="books"></books-count>
+
+
+<!--  <button #increment>counter++</button>-->
+<!--  <signal [signalValue]="counter" [valueName]="'counter'" />-->
+<!--  <signal [signalValue]="isEven" [valueName]="'isEven'" />-->
+<!--  <message [message]="message" />-->
+<!--  <linked-counter [counter]="counter" />-->
+<!--  <unlinked-counter [counter]="counter" />-->
 </div>
-<div class="page-container">
-  <router-outlet></router-outlet>
-</div>
-<change-detection-demo-source-code-tooltip />
+
