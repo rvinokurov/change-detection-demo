@@ -1,0 +1,17 @@
+<div class="component">
+  <h3>{{ title }}</h3>
+
+  <div>
+    <label>Id</label>
+    <input type="text" [formControl]="bookId" />
+    <label>Author</label>
+    <input type="text" [formControl]="bookAuthor" />
+    <label>Title</label>
+    <input type="text" [formControl]="bookTitle" />
+    <button (click)="update()">update</button>
+  </div>
+
+
+
+
+</div>

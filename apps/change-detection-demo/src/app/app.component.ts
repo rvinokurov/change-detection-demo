@@ -1,40 +1,39 @@
 import {RouterModule} from '@angular/router';
-import {ChangeDetectionStrategy, Component, NgZone} from '@angular/core';
-import {SourceCodeTooltipComponent} from "@change-detection-demo/shared/core";
+import {ChangeDetectionStrategy, Component, signal,} from '@angular/core';
+import {AbsctractComponentNode} from './components/absctract-component-node';
+import {Book} from "./book.interface";
+import {BooksListComponent} from "./components/books-list/books-list.component";
+import {AddBookComponent} from "./components/add-book/add-book.component";
+import {EditBookComponent} from "./components/edit-book/edit-book.component";
+import {BooksCount} from "./components/books-count/books-count.component";
 
 @Component({
   standalone: true,
-  imports: [RouterModule, SourceCodeTooltipComponent],
+  imports: [
+    RouterModule,
+    BooksListComponent,
+    AddBookComponent,
+    EditBookComponent,
+    BooksCount,
+  ],
   selector: 'change-detection-demo-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'change-detection-demo';
+export class AppComponent extends AbsctractComponentNode {
+  title = 'Signals';
 
-  protected logOptions() {
-    return [
-      `color: white`,
-      `background: gray`,
-      `padding: 2px 10px 2px 10px`,
-      `margin: 20px 10px`,
-      'font-weight: 600',
-      'border-radius: 3px',
-    ];
-  }
+  nodeColor = '#b3efd0';
 
-  protected log(message: string) {
-    console.log(`%c-> ${message}`, this.logOptions().join(';'));
-  }
+  books = signal<Book[]>([{
+    author: 'Роберт Мартин',
+    title: 'Идеальный программист',
+  }, {
+    author: 'Мартин Фаулер',
+    title: 'Рефакторинг'
+  }]);
 
-  constructor(private readonly ngZone: NgZone) {
-    this.ngZone.onStable.subscribe(() => {
-      this.log('Zone stable');
-    });
 
-    this.ngZone.onUnstable.subscribe(() => {
-      this.log('Zone unstable');
-    });
-  }
+
 }
