@@ -12,6 +12,7 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {Book} from '../../book.interface';
 import {fromObservable} from "../../from-observable";
 import {startWith} from "rxjs";
+import {SignalInput} from "@change-detection-demo/angular-next";
 
 @Component({
   selector: 'edit-book',
@@ -26,25 +27,22 @@ export class EditBookComponent extends AbsctractComponentNode {
   nodeColor = '#ffe19f';
   title = 'Linked Counter';
 
-  @Input() books!: SettableSignal<Book[]>;
+  @Input() @SignalInput() books!: SettableSignal<Book[]>;
 
   bookId = new FormControl<number>(0);
   bookTitle = new FormControl<string>('');
   bookAuthor = new FormControl<string>('');
+
   bookIdSignal = fromObservable(this.bookId.valueChanges.pipe(startWith(0)));
 
-
-  constructor() {
-    super();
-    effect(() => {
-      const index = this.bookIdSignal() || 0;
-      const books = this.books();
-      if(books[index]) {
-        this.bookTitle.setValue(books[index].title);
-        this.bookAuthor.setValue(books[index].author);
-      }
-    });
-  }
+  fill = effect(() => {
+    const index = this.bookIdSignal() || 0;
+    const books = this.books();
+    if (books[index]) {
+      this.bookTitle.setValue(books[index].title);
+      this.bookAuthor.setValue(books[index].author);
+    }
+  });
 
 
   update() {
@@ -56,5 +54,9 @@ export class EditBookComponent extends AbsctractComponentNode {
         title: this.bookTitle.value!,
       };
     });
+  }
+
+  ngOnDestroy() {
+    this.fill.destroy();
   }
 }
